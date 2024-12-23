@@ -38,3 +38,7 @@ function convertCurrency() {
       document.getElementById("loan-result").innerText = "Lütfen tüm alanları doldurun.";
     }
   }
+
+
+
+  'bu ayrı'

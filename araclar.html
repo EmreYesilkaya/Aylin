@@ -2,55 +2,74 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <!-- Sayfanın duyarlı tasarım için viewport ayarı -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finansal Araçlar - YBS Finans</title>
+  <!-- Font Awesome ikon kütüphanesini dahil ediyoruz -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
+    /* CSS değişkenleri ile renkler ve temalar tanımlanıyor */
     :root {
-      --primary-color: #007BFF;
-      --secondary-color: #28a745;
-      --dark-color: #111;
-      --light-color: #f8f9fa;
-      --transition: all 0.3s ease;
+      --ana-renk: #007BFF; /* Birincil renk */
+      --ikincil-renk: #28a745; /* İkincil renk */
+      --koyu-renk: #111; /* Koyu renk */
+      --acik-renk: #f8f9fa; /* Açık renk */
+      --gecis: all 0.3s ease; /* Geçiş efekti */
     }
 
+    /* Sayfa genelindeki margin ve padding sıfırlanır, box-sizing belirlenir */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Sayfanın genel yazı tipi ve renk ayarları */
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f5f7fa;
+      background-color: #f5f7fa; /* Sayfanın arka plan rengi */
+      color: #333; /* Genel yazı rengi */
+      line-height: 1.6;
     }
 
-    .container {
+    /* İçeriğin merkezlenmesi ve maksimum genişlik ayarı */
+    .kapsayici {
       width: 90%;
       max-width: 1200px;
       margin: auto;
+      padding: 0 2rem;
     }
 
-    .navbar {
-      background-color: var(--dark-color);
+    /* Navigasyon Çubuğu Stilleri */
+    .navigasyon-cubugu {
+      background-color: var(--koyu-renk);
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
 
-    .navbar .container {
+    /* Navigasyon çubuğu içerisindeki kapsayıcı stili */
+    .navigasyon-cubugu .kapsayici {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 0;
     }
 
+    /* Logo stili */
     .logo {
       font-size: 1.8rem;
       font-weight: 700;
       color: #fff;
       text-decoration: none;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
-    .nav-links {
+    /* Navigasyon bağlantıları stili */
+    .navigasyon-baglanti {
       display: flex;
       gap: 2rem;
       list-style: none;
@@ -58,34 +77,39 @@
       padding: 0;
     }
 
-    .nav-links a {
+    /* Navigasyon bağlantılarının genel stili */
+    .navigasyon-baglanti a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      transition: var(--transition);
+      transition: var(--gecis);
       padding: 0.5rem 1rem;
       border-radius: 5px;
     }
 
-    .nav-links a:hover {
+    /* Navigasyon bağlantılarının üzerine gelindiğinde arka plan rengi değişir */
+    .navigasyon-baglanti a:hover {
       background-color: rgba(255,255,255,0.1);
     }
 
-    .tools-hero {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    /* Başlık Bölümü Stilleri */
+    .araclar-kahraman {
+      background: linear-gradient(135deg, var(--ana-renk), var(--ikincil-renk));
       color: #fff;
       padding: 4rem 0;
       text-align: center;
       clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
 
-    .tools-hero h1 {
+    /* Başlık bölümündeki başlık metni stili ve animasyonu */
+    .araclar-kahraman h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
       animation: fadeInUp 0.8s ease;
     }
 
-    .tools-hero p {
+    /* Başlık altındaki açıklama metni stili ve animasyonu */
+    .araclar-kahraman p {
       font-size: 1.25rem;
       opacity: 0.9;
       max-width: 600px;
@@ -93,36 +117,41 @@
       animation: fadeInUp 1s ease;
     }
 
-    .tools-container {
+    /* Finansal Araçlar İçeriği Stilleri */
+    .araclar-ag {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
       padding: 3rem 0;
     }
 
-    .tool-card {
+    /* Her bir finansal aracın kart stili */
+    .arac-karti {
       background: #fff;
       border-radius: 15px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.05);
       padding: 2rem;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
-    .tool-card:hover {
+    /* Kart üzerine gelindiğinde hafif yukarı kayma ve gölge efekti */
+    .arac-karti:hover {
       transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
-    .tool-header {
+    /* Kart başlığı ve ikonu için üst kısım */
+    .arac-basligi {
       display: flex;
       align-items: center;
       margin-bottom: 1.5rem;
     }
 
-    .tool-icon {
+    /* Karttaki ikonun stili */
+    .arac-ikon {
       width: 50px;
       height: 50px;
-      background: var(--primary-color);
+      background: var(--ana-renk);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -130,68 +159,78 @@
       margin-right: 1rem;
     }
 
-    .tool-icon i {
+    /* İkon içindeki Font Awesome ikon stili */
+    .arac-ikon i {
       color: #fff;
       font-size: 1.5rem;
     }
 
-    .tool-title {
+    /* Araç başlık metni stili */
+    .arac-baslik {
       font-size: 1.5rem;
       margin: 0;
-      color: var(--dark-color);
+      color: var(--koyu-renk);
     }
 
-    .input-group {
+    /* Giriş grubu stili */
+    .input-grubu {
       margin-bottom: 1.5rem;
     }
 
-    .input-group label {
+    /* Giriş grubu içindeki etiket stili */
+    .input-grubu label {
       display: block;
       margin-bottom: 0.5rem;
       color: #555;
       font-weight: 500;
     }
 
-    .input-field {
+    /* Giriş alanlarının genel stili */
+    .input-alani {
       width: 100%;
       padding: 0.8rem;
       border: 2px solid #eee;
       border-radius: 8px;
       font-size: 1rem;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
-    .input-field:focus {
-      border-color: var(--primary-color);
+    /* Giriş alanına odaklanıldığında border rengi değişir */
+    .input-alani:focus {
+      border-color: var(--ana-renk);
       outline: none;
     }
 
-    .btn {
+    /* Buton stili */
+    .buton {
       width: 100%;
       padding: 1rem;
       border: none;
       border-radius: 8px;
-      background: var(--primary-color);
+      background: var(--ana-renk);
       color: #fff;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
-    .btn:hover {
+    /* Buton üzerine gelindiğinde arka plan rengi koyulaşır */
+    .buton:hover {
       background: #0056b3;
     }
 
-    .result {
+    /* Sonuç bölümü stili */
+    .sonuc {
       margin-top: 1.5rem;
       padding: 1rem;
-      background: var(--light-color);
+      background: var(--acik-renk);
       border-radius: 8px;
       text-align: center;
       font-weight: 500;
     }
 
+    /* Animasyon tanımları */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -203,30 +242,37 @@
       }
     }
 
+    /* Duyarlı Tasarım için medya sorguları */
     @media (max-width: 768px) {
-      .tools-hero {
-        padding: 3rem 0;
-      }
-
-      .tools-hero h1 {
+      /* Başlık bölümündeki başlık font boyutunu küçültür */
+      .araclar-kahraman h1 {
         font-size: 2rem;
       }
 
-      .nav-links {
+      /* Navigasyon bağlantılarını gizler */
+      .navigasyon-baglanti {
         display: none;
+      }
+
+      /* Mobil menü butonunu gösterir */
+      .mobil-menu-butonu {
+        display: block;
       }
     }
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="container">
+  <!-- Navigasyon Çubuğu -->
+  <header class="navigasyon-cubugu">
+    <div class="kapsayici">
+      <!-- Logo ve ana sayfa bağlantısı -->
       <a href="index.html" class="logo">YBS Finans</a>
+      <!-- Navigasyon bağlantıları -->
       <nav>
-        <ul class="nav-links">
+        <ul class="navigasyon-baglanti">
           <li><a href="index.html">Ana Sayfa</a></li>
           <li><a href="hizmetler.html">Hizmetler</a></li>
-          <li><a href="araclar.html" class="active">Finansal Araçlar</a></li>
+          <li><a href="araclar.html" class="aktif">Finansal Araçlar</a></li>
           <li><a href="hakkimizda.html">Hakkımızda</a></li>
           <li><a href="iletisim.html">İletişim</a></li>
         </ul>
@@ -234,28 +280,31 @@
     </div>
   </header>
 
-  <section class="tools-hero">
-    <div class="container">
+  <!-- Finansal Araçlar Başlık Bölümü -->
+  <section class="araclar-kahraman">
+    <div class="kapsayici">
       <h1>Finansal Araçlar</h1>
       <p>Finansal hesaplamalarınızı kolayca yapın, geleceğinizi planlayın.</p>
     </div>
   </section>
 
-  <main class="container tools-container">
-    <div class="tool-card">
-      <div class="tool-header">
-        <div class="tool-icon">
+  <!-- Finansal Araçlar İçeriği -->
+  <main class="kapsayici araclar-ag">
+    <!-- Döviz Çevirici Aracı -->
+    <div class="arac-karti">
+      <div class="arac-basligi">
+        <div class="arac-ikon">
           <i class="fas fa-exchange-alt"></i>
         </div>
-        <h2 class="tool-title">Döviz Çevirici</h2>
+        <h2 class="arac-baslik">Döviz Çevirici</h2>
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Miktar</label>
-        <input type="number" id="amount" class="input-field" placeholder="Miktar giriniz">
+        <input type="number" id="miktar" class="input-alani" placeholder="Miktar giriniz">
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Kaynak Para Birimi</label>
-        <select id="from-currency" class="input-field">
+        <select id="kaynak-para-birimi" class="input-alani">
           <option value="USD">USD - Amerikan Doları</option>
           <option value="EUR">EUR - Euro</option>
           <option value="TRY">TRY - Türk Lirası</option>
@@ -263,9 +312,9 @@
           <option value="JPY">JPY - Japon Yeni</option>
         </select>
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Hedef Para Birimi</label>
-        <select id="to-currency" class="input-field">
+        <select id="hedef-para-birimi" class="input-alani">
           <option value="TRY">TRY - Türk Lirası</option>
           <option value="USD">USD - Amerikan Doları</option>
           <option value="EUR">EUR - Euro</option>
@@ -273,59 +322,63 @@
           <option value="JPY">JPY - Japon Yeni</option>
         </select>
       </div>
-      <button onclick="convertCurrency()" class="btn">Hesapla</button>
-      <div id="result" class="result"></div>
+      <button onclick="convertCurrency()" class="buton">Hesapla</button>
+      <div id="sonuc" class="sonuc"></div>
     </div>
 
-    <div class="tool-card">
-      <div class="tool-header">
-        <div class="tool-icon">
+    <!-- Kredi Hesaplama Aracı -->
+    <div class="arac-karti">
+      <div class="arac-basligi">
+        <div class="arac-ikon">
           <i class="fas fa-calculator"></i>
         </div>
-        <h2 class="tool-title">Kredi Hesaplama</h2>
+        <h2 class="arac-baslik">Kredi Hesaplama</h2>
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Kredi Tutarı (TL)</label>
-        <input type="number" id="loan-amount" class="input-field" placeholder="Kredi tutarını giriniz">
+        <input type="number" id="kredi-tutari" class="input-alani" placeholder="Kredi tutarını giriniz">
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Yıllık Faiz Oranı (%)</label>
-        <input type="number" id="interest-rate" class="input-field" placeholder="Faiz oranını giriniz">
+        <input type="number" id="faiz-orani" class="input-alani" placeholder="Faiz oranını giriniz">
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Vade (Ay)</label>
-        <input type="number" id="loan-term" class="input-field" placeholder="Vade süresini giriniz">
+        <input type="number" id="vade" class="input-alani" placeholder="Vade süresini giriniz">
       </div>
-      <button onclick="calculateLoan()" class="btn">Hesapla</button>
-      <div id="loan-result" class="result"></div>
+      <button onclick="calculateLoan()" class="buton">Hesapla</button>
+      <div id="kredi-sonucu" class="sonuc"></div>
     </div>
 
-    <div class="tool-card">
-      <div class="tool-header">
-        <div class="tool-icon">
+    <!-- Yatırım Getiri Hesaplama Aracı -->
+    <div class="arac-karti">
+      <div class="arac-basligi">
+        <div class="arac-ikon">
           <i class="fas fa-chart-line"></i>
         </div>
-        <h2 class="tool-title">Yatırım Getiri Hesaplama</h2>
+        <h2 class="arac-baslik">Yatırım Getiri Hesaplama</h2>
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Başlangıç Tutarı (TL)</label>
-        <input type="number" id="investment-amount" class="input-field" placeholder="Başlangıç tutarını giriniz">
+        <input type="number" id="baslangic-tutari" class="input-alani" placeholder="Başlangıç tutarını giriniz">
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Yıllık Beklenen Getiri (%)</label>
-        <input type="number" id="return-rate" class="input-field" placeholder="Beklenen getiri oranını giriniz">
+        <input type="number" id="beklenen-getiri" class="input-alani" placeholder="Beklenen getiri oranını giriniz">
       </div>
-      <div class="input-group">
+      <div class="input-grubu">
         <label>Yatırım Süresi (Yıl)</label>
-        <input type="number" id="investment-period" class="input-field" placeholder="Yatırım süresini giriniz">
+        <input type="number" id="yatirim-suresi" class="input-alani" placeholder="Yatırım süresini giriniz">
       </div>
-      <button onclick="calculateInvestment()" class="btn">Hesapla</button>
-      <div id="investment-result" class="result"></div>
+      <button onclick="calculateInvestment()" class="buton">Hesapla</button>
+      <div id="yatirim-sonucu" class="sonuc"></div>
     </div>
   </main>
 
+  <!-- JavaScript Fonksiyonları -->
   <script>
-    const exchangeRates = {
+    // Döviz kurlarını tanımlıyoruz
+    const dovizKurlari = {
       USD: { TRY: 31.5, EUR: 0.92, GBP: 0.79, JPY: 150.50 },
       EUR: { TRY: 34.2, USD: 1.09, GBP: 0.86, JPY: 163.85 },
       TRY: { USD: 0.032, EUR: 0.029, GBP: 0.025, JPY: 4.79 },
@@ -333,67 +386,84 @@
       JPY: { USD: 0.0066, EUR: 0.0061, GBP: 0.0052, TRY: 0.21 }
     };
 
+    // Döviz Çevirici Fonksiyonu
     function convertCurrency() {
-      const amount = parseFloat(document.getElementById("amount").value);
-      const fromCurrency = document.getElementById("from-currency").value;
-      const toCurrency = document.getElementById("to-currency").value;
+      // Kullanıcıdan alınan miktar ve para birimlerini alıyoruz
+      const miktar = parseFloat(document.getElementById("miktar").value);
+      const kaynakParaBirimi = document.getElementById("kaynak-para-birimi").value;
+      const hedefParaBirimi = document.getElementById("hedef-para-birimi").value;
 
-      if (isNaN(amount)) {
-        document.getElementById("result").innerHTML = "Lütfen geçerli bir miktar giriniz";
+      // Miktarın geçerli olup olmadığını kontrol ediyoruz
+      if (isNaN(miktar)) {
+        document.getElementById("sonuc").innerHTML = "Lütfen geçerli bir miktar giriniz";
         return;
       }
 
-      if (fromCurrency === toCurrency) {
-        document.getElementById("result").innerHTML = `${amount.toFixed(2)} ${fromCurrency}`;
+      // Kaynak ve hedef para birimi aynıysa doğrudan sonucu gösteriyoruz
+      if (kaynakParaBirimi === hedefParaBirimi) {
+        document.getElementById("sonuc").innerHTML = `${miktar.toFixed(2)} ${kaynakParaBirimi}`;
         return;
       }
 
-      const rate = exchangeRates[fromCurrency][toCurrency];
-      const result = amount * rate;
-      document.getElementById("result").innerHTML = `${amount.toFixed(2)} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
+      // Döviz kurunu alıyoruz ve çeviriyi hesaplıyoruz
+      const kur = dovizKurlari[kaynakParaBirimi][hedefParaBirimi];
+      const sonuc = miktar * kur;
+      document.getElementById("sonuc").innerHTML = `${miktar.toFixed(2)} ${kaynakParaBirimi} = ${sonuc.toFixed(2)} ${hedefParaBirimi}`;
     }
 
+    // Kredi Hesaplama Fonksiyonu
     function calculateLoan() {
-      const loanAmount = parseFloat(document.getElementById("loan-amount").value);
-      const yearlyInterestRate = parseFloat(document.getElementById("interest-rate").value);
-      const loanTerm = parseInt(document.getElementById("loan-term").value);
+      // Kullanıcıdan alınan kredi tutarı, faiz oranı ve vade süresini alıyoruz
+      const krediTutari = parseFloat(document.getElementById("kredi-tutari").value);
+      const faizOrani = parseFloat(document.getElementById("faiz-orani").value);
+      const vade = parseInt(document.getElementById("vade").value);
 
-      if (isNaN(loanAmount) || isNaN(yearlyInterestRate) || isNaN(loanTerm)) {
-        document.getElementById("loan-result").innerHTML = "Lütfen tüm alanları doldurun";
+      // Girişlerin geçerli olup olmadığını kontrol ediyoruz
+      if (isNaN(krediTutari) || isNaN(faizOrani) || isNaN(vade)) {
+        document.getElementById("kredi-sonucu").innerHTML = "Lütfen tüm alanları doldurun";
         return;
       }
 
-      const monthlyInterestRate = yearlyInterestRate / 12 / 100;
-      const monthlyPayment = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTerm)) / 
-                            (Math.pow(1 + monthlyInterestRate, loanTerm) - 1);
-      const totalPayment = monthlyPayment * loanTerm;
-      const totalInterest = totalPayment - loanAmount;
+      // Aylık faiz oranını hesaplıyoruz
+      const aylikFaizOrani = faizOrani / 12 / 100;
+      // Aylık ödemeyi hesaplıyoruz
+      const aylikOdeme = (krediTutari * aylikFaizOrani * Math.pow(1 + aylikFaizOrani, vade)) / 
+                          (Math.pow(1 + aylikFaizOrani, vade) - 1);
+      // Toplam ödemeyi ve toplam faizi hesaplıyoruz
+      const toplamOdeme = aylikOdeme * vade;
+      const toplamFaiz = toplamOdeme - krediTutari;
 
-      document.getElementById("loan-result").innerHTML = `
-        Aylık Ödeme: ${monthlyPayment.toFixed(2)} TL<br>
-        Toplam Ödeme: ${totalPayment.toFixed(2)} TL<br>
-        Toplam Faiz: ${totalInterest.toFixed(2)} TL
+      // Sonuçları kullanıcıya gösteriyoruz
+      document.getElementById("kredi-sonucu").innerHTML = `
+        Aylık Ödeme: ${aylikOdeme.toFixed(2)} TL<br>
+        Toplam Ödeme: ${toplamOdeme.toFixed(2)} TL<br>
+        Toplam Faiz: ${toplamFaiz.toFixed(2)} TL
       `;
     }
 
+    // Yatırım Getiri Hesaplama Fonksiyonu
     function calculateInvestment() {
-      const initialAmount = parseFloat(document.getElementById("investment-amount").value);
-      const yearlyReturnRate = parseFloat(document.getElementById("return-rate").value);
-      const investmentPeriod = parseInt(document.getElementById("investment-period").value);
+      // Kullanıcıdan alınan başlangıç tutarı, beklenen getiri oranı ve yatırım süresini alıyoruz
+      const baslangicTutari = parseFloat(document.getElementById("baslangic-tutari").value);
+      const beklenenGetiriOrani = parseFloat(document.getElementById("beklenen-getiri").value);
+      const yatirimSuresi = parseInt(document.getElementById("yatirim-suresi").value);
 
-if (isNaN(initialAmount) || isNaN(yearlyReturnRate) || isNaN(investmentPeriod)) {
-  document.getElementById("investment-result").innerHTML = "Lütfen tüm alanları doldurun";
-  return;
-}
+      // Girişlerin geçerli olup olmadığını kontrol ediyoruz
+      if (isNaN(baslangicTutari) || isNaN(beklenenGetiriOrani) || isNaN(yatirimSuresi)) {
+        document.getElementById("yatirim-sonucu").innerHTML = "Lütfen tüm alanları doldurun";
+        return;
+      }
 
-const finalAmount = initialAmount * Math.pow(1 + yearlyReturnRate / 100, investmentPeriod);
-const totalGain = finalAmount - initialAmount;
+      // Yatırımın son halini ve toplam kazancı hesaplıyoruz
+      const finalTutari = baslangicTutari * Math.pow(1 + beklenenGetiriOrani / 100, yatirimSuresi);
+      const toplamKazanc = finalTutari - baslangicTutari;
 
-document.getElementById("investment-result").innerHTML = `
-  Toplam Tutar: ${finalAmount.toFixed(2)} TL<br>
-  Toplam Kazanç: ${totalGain.toFixed(2)} TL
-`;
-}
-</script>
+      // Sonuçları kullanıcıya gösteriyoruz
+      document.getElementById("yatirim-sonucu").innerHTML = `
+        Toplam Tutar: ${finalTutari.toFixed(2)} TL<br>
+        Toplam Kazanç: ${toplamKazanc.toFixed(2)} TL
+      `;
+    }
+  </script>
 </body>
 </html>

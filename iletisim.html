@@ -2,56 +2,65 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <!-- Sayfanın duyarlı tasarım için viewport ayarı -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>İletişim - YBS Finans</title>
+  <!-- Font Awesome ikon kütüphanesini dahil ediyoruz -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+    /* CSS değişkenleri ile renkler ve temalar tanımlanıyor */
     :root {
-      --primary: #007BFF;
-      --primary-dark: #0056b3;
-      --secondary: #28a745;
-      --dark: #111;
-      --light: #f8f9fa;
-      --text: #333;
-      --transition: all 0.3s ease;
+      --ana-renk: #007BFF; /* Birincil renk */
+      --ana-renk-koyu: #0056b3; /* Birincil rengin koyu tonu */
+      --ikincil-renk: #28a745; /* İkincil renk */
+      --koyu-renk: #111; /* Koyu renk */
+      --acik-renk: #f8f9fa; /* Açık renk */
+      --yazi-renk: #333; /* Yazı rengi */
+      --gecis: all 0.3s ease; /* Geçiş efekti */
     }
 
+    /* Tüm elemanlar için genel sıfırlama */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Sayfa genelinde kullanılacak yazı tipi ve temel renk ayarları */
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       line-height: 1.6;
-      color: var(--text);
-      background-color: var(--light);
+      color: var(--yazi-renk); /* Genel yazı rengi */
+      background-color: var(--acik-renk); /* Sayfanın arka plan rengi */
     }
 
-    .container {
+    /* İçeriğin merkezlenmesi ve maksimum genişlik ayarı */
+    .kapsayici {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* Navbar */
-    .navbar {
-      background: var(--dark);
+    /* Navigasyon Çubuğu Stilleri */
+    .navigasyon-cubugu {
+      background: var(--koyu-renk);
       padding: 1rem 0;
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: var(--gecis);
     }
 
-    .navbar .container {
+    /* Navigasyon çubuğu içerisindeki kapsayıcı stili */
+    .navigasyon-cubugu .kapsayici {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    /* Logo stili */
     .logo {
       font-size: 1.5rem;
       font-weight: 700;
@@ -62,24 +71,28 @@
       gap: 0.5rem;
     }
 
+    /* Logodaki ikonun rengi */
     .logo i {
-      color: var(--primary);
+      color: var(--ana-renk);
     }
 
+    /* Navigasyon bağlantıları stili */
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
 
+    /* Navigasyon bağlantılarının genel stili */
     .nav-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      transition: var(--transition);
+      transition: var(--gecis);
       position: relative;
     }
 
+    /* Navigasyon bağlantılarının altındaki çizgi efekti */
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -87,25 +100,27 @@
       height: 2px;
       bottom: -4px;
       left: 0;
-      background-color: var(--primary);
-      transition: var(--transition);
+      background-color: var(--ana-renk);
+      transition: var(--gecis);
     }
 
+    /* Hover durumunda veya aktif olan bağlantı için alt çizgi genişlemesi */
     .nav-links a:hover::after,
-    .nav-links .active::after {
+    .nav-links .aktif::after {
       width: 100%;
     }
 
-    /* Hero Section */
+    /* Başlık Bölümü Stilleri */
     .contact-hero {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
       padding: 8rem 0 4rem;
+      background: linear-gradient(135deg, var(--ana-renk), var(--ikincil-renk));
+      color: white;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
+    /* Başlık bölümünün arka planına desen eklemek için */
     .contact-hero::before {
       content: '';
       position: absolute;
@@ -117,12 +132,15 @@
       opacity: 0.4;
     }
 
+    /* Başlık metni stili ve animasyonu */
     .contact-hero h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
+      font-weight: 800;
       position: relative;
     }
 
+    /* Başlık altındaki açıklama metni stili ve animasyonu */
     .contact-hero p {
       font-size: 1.2rem;
       max-width: 600px;
@@ -130,58 +148,67 @@
       position: relative;
     }
 
-    /* Contact Section */
-    .contact-section {
+    /* İletişim Bölümü Stilleri */
+    .iletisim-bolumu {
       padding: 4rem 0;
     }
 
-    .contact-grid {
+    /* İletişim bölümü içindeki grid düzeni */
+    .iletisim-ag {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
       margin-top: 2rem;
     }
 
-    .contact-form {
+    /* İletişim Formu Stili */
+    .iletisim-formu {
       background: #fff;
       padding: 2.5rem;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: var(--gecis);
     }
 
-    .form-group {
+    /* Form grubu stili */
+    .form-grubu {
       margin-bottom: 1.5rem;
     }
 
-    .form-label {
+    /* Form etiket stili */
+    .form-etiket {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 500;
-      color: var(--text);
+      color: var(--yazi-renk);
     }
 
-    .form-control {
+    /* Form kontrol stili */
+    .form-kontrol {
       width: 100%;
       padding: 0.8rem 1rem;
       border: 2px solid #e9ecef;
       border-radius: 8px;
-      transition: var(--transition);
+      transition: var(--gecis);
       font-size: 1rem;
     }
 
-    .form-control:focus {
+    /* Form kontrolüne odaklanıldığında border ve gölge rengi değişir */
+    .form-kontrol:focus {
       outline: none;
-      border-color: var(--primary);
+      border-color: var(--ana-renk);
       box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
     }
 
-    textarea.form-control {
+    /* Metin alanı için özel stil */
+    textarea.form-kontrol {
       min-height: 150px;
       resize: vertical;
     }
 
-    .submit-btn {
-      background: var(--primary);
+    /* Gönder butonu stili */
+    .gonder-btn {
+      background: var(--ana-renk);
       color: #fff;
       padding: 1rem 2rem;
       border: none;
@@ -189,184 +216,234 @@
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: var(--transition);
+      transition: var(--gecis);
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
 
-    .submit-btn:hover {
-      background: var(--primary-dark);
+    /* Buton üzerine gelindiğinde arka plan rengi koyulaşır ve hafif yukarı kayma */
+    .gonder-btn:hover {
+      background: var(--ana-renk-koyu);
       transform: translateY(-2px);
     }
 
-    .contact-info {
+    /* İletişim Bilgileri Stilleri */
+    .iletisim-bilgileri {
       display: flex;
       flex-direction: column;
       gap: 2rem;
     }
 
-    .info-card {
+    /* Bilgi kartı stili */
+    .bilgi-karti {
       background: #fff;
       padding: 2rem;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
-    .info-card:hover {
+    /* Kart üzerine gelindiğinde hafif yukarı kayma */
+    .bilgi-karti:hover {
       transform: translateY(-5px);
     }
 
-    .info-card i {
+    /* Bilgi kartındaki ikon stili */
+    .bilgi-karti i {
       font-size: 2rem;
-      color: var(--primary);
+      color: var(--ana-renk);
       margin-bottom: 1rem;
     }
 
-    .info-card h3 {
+    /* Bilgi kartı başlık stili */
+    .bilgi-karti h3 {
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
-      color: var(--text);
+      color: var(--yazi-renk);
     }
 
-    .info-card p {
+    /* Bilgi kartı paragraf stili */
+    .bilgi-karti p {
       color: #666;
     }
 
-    .social-links {
+    /* Sosyal Medya Bağlantıları Stili */
+    .sosyal-baglanti {
       display: flex;
       gap: 1rem;
       margin-top: 1rem;
     }
 
-    .social-links a {
+    /* Sosyal medya ikonlarının stili */
+    .sosyal-baglanti a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 40px;
       height: 40px;
-      background: var(--light);
+      background: var(--acik-renk);
       border-radius: 50%;
-      color: var(--primary);
+      color: var(--ana-renk);
       text-decoration: none;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
-    .social-links a:hover {
-      background: var(--primary);
+    /* Sosyal medya ikonlarına gelindiğinde arka plan ve yazı rengi değişir */
+    .sosyal-baglanti a:hover {
+      background: var(--ana-renk);
       color: #fff;
       transform: translateY(-3px);
     }
 
-    /* Map Section */
-    .map-section {
+    /* Harita Bölümü Stilleri */
+    .harita-bolumu {
       padding: 4rem 0;
       background: #fff;
     }
 
-    .map-container {
+    /* Harita kapsayıcısı stili */
+    .harita-kapsayici {
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
+    /* İframe stili */
     iframe {
       width: 100%;
       height: 400px;
       border: none;
     }
 
-    /* Footer */
-    .footer {
-      background: var(--dark);
-      color: #fff;
+    /* Altbilgi (Footer) Stilleri */
+    .altbilgi {
+      background: var(--koyu-renk);
+      color: white;
       padding: 2rem 0;
       text-align: center;
     }
 
+    /* Medya Sorguları */
     @media (max-width: 768px) {
-      .contact-grid {
+      /* Navigasyon bağlantılarını gizler */
+      .nav-links {
+        display: none;
+      }
+
+      /* Başlık bölümündeki başlık font boyutunu küçültür */
+      .contact-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      /* Başlık altındaki paragraf font boyutunu küçültür */
+      .contact-hero p {
+        font-size: 1.1rem;
+      }
+
+      /* İletişim bölümü grid düzenini tek sütun haline getirir */
+      .iletisim-ag {
         grid-template-columns: 1fr;
       }
 
-      .nav-links {
-        display: none;
+      /* Yorum kartlarının paddingini küçültür */
+      .bilgi-karti {
+        padding: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container">
+  <!-- Navigasyon Çubuğu -->
+  <nav class="navigasyon-cubugu">
+    <div class="kapsayici">
+      <!-- Logo ve ana sayfa bağlantısı -->
       <a href="index.html" class="logo">
         <i class="fas fa-dollar-sign"></i>
         YBS Finans
       </a>
+      <!-- Navigasyon bağlantıları -->
       <ul class="nav-links">
         <li><a href="index.html">Ana Sayfa</a></li>
         <li><a href="hizmetler.html">Hizmetler</a></li>
         <li><a href="araclar.html">Finansal Araçlar</a></li>
         <li><a href="hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="iletisim.html" class="active">İletişim</a></li>
+        <li><a href="iletisim.html" class="aktif">İletişim</a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- Başlık Bölümü -->
   <section class="contact-hero">
-    <div class="container">
+    <div class="kapsayici">
       <h1>Bizimle İletişime Geçin</h1>
       <p>Finansal hedeflerinize ulaşmak için profesyonel ekibimiz yanınızda. Sorularınız için bize ulaşın.</p>
     </div>
   </section>
 
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-form">
+  <!-- İletişim Bölümü -->
+  <section class="iletisim-bolumu">
+    <div class="kapsayici">
+      <div class="iletisim-ag">
+        <!-- İletişim Formu -->
+        <div class="iletisim-formu">
           <h2>İletişim Formu</h2>
-          <form id="contactForm">
-            <div class="form-group">
-              <label class="form-label">Ad Soyad</label>
-              <input type="text" class="form-control" required>
+          <form id="iletisimFormu">
+            <!-- Ad Soyad Girişi -->
+            <div class="form-grubu">
+              <label class="form-etiket">Ad Soyad</label>
+              <input type="text" class="form-kontrol" required placeholder="Adınızı ve soyadınızı giriniz">
             </div>
-            <div class="form-group">
-              <label class="form-label">E-posta</label>
-              <input type="email" class="form-control" required>
+            <!-- E-posta Girişi -->
+            <div class="form-grubu">
+              <label class="form-etiket">E-posta</label>
+              <input type="email" class="form-kontrol" required placeholder="E-posta adresinizi giriniz">
             </div>
-            <div class="form-group">
-              <label class="form-label">Telefon</label>
-              <input type="tel" class="form-control">
+            <!-- Telefon Girişi -->
+            <div class="form-grubu">
+              <label class="form-etiket">Telefon</label>
+              <input type="tel" class="form-kontrol" placeholder="Telefon numaranızı giriniz">
             </div>
-            <div class="form-group">
-              <label class="form-label">Mesajınız</label>
-              <textarea class="form-control" required></textarea>
+            <!-- Mesaj Girişi -->
+            <div class="form-grubu">
+              <label class="form-etiket">Mesajınız</label>
+              <textarea class="form-kontrol" required placeholder="Mesajınızı yazınız"></textarea>
             </div>
-            <button type="submit" class="submit-btn">
+            <!-- Gönder Butonu -->
+            <button type="submit" class="gonder-btn">
               <i class="fas fa-paper-plane"></i> Gönder
             </button>
           </form>
         </div>
 
-        <div class="contact-info">
-          <div class="info-card">
+        <!-- İletişim Bilgileri -->
+        <div class="iletisim-bilgileri">
+          <!-- Adres Bilgisi Kartı -->
+          <div class="bilgi-karti">
             <i class="fas fa-map-marker-alt"></i>
             <h3>Adres</h3>
             <p>Başkent Üniversitesi, Bağlıca Kampüsü</p>
             <p>Ankara, Türkiye</p>
           </div>
 
-          <div class="info-card">
+          <!-- Telefon Bilgisi Kartı -->
+          <div class="bilgi-karti">
             <i class="fas fa-phone-alt"></i>
             <h3>Telefon</h3>
             <p>+90 312 123 45 67</p>
             <p>+90 312 123 45 68</p>
           </div>
 
-          <div class="info-card">
+          <!-- E-posta Bilgisi Kartı -->
+          <div class="bilgi-karti">
             <i class="fas fa-envelope"></i>
             <h3>E-posta</h3>
             <p>info@ybsfinans.com</p>
             <p>destek@ybsfinans.com</p>
-            <div class="social-links">
+            <!-- Sosyal Medya Bağlantıları -->
+            <div class="sosyal-baglanti">
               <a href="#"><i class="fab fa-facebook-f"></i></a>
               <a href="#"><i class="fab fa-twitter"></i></a>
               <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -378,9 +455,10 @@
     </div>
   </section>
 
-  <section class="map-section">
-    <div class="container">
-      <div class="map-container">
+  <!-- Harita Bölümü -->
+  <section class="harita-bolumu">
+    <div class="kapsayici">
+      <div class="harita-kapsayici">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3068.8470215587537!2d32.62233761517481!3d39.86618597942979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d3489c9d1f68b1%3A0x3171fcaaf69eeb47!2sBa%C5%9Fkent%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
           allowfullscreen=""
@@ -391,10 +469,44 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
+  <!-- Altbilgi (Footer) -->
+  <footer class="altbilgi">
+    <div class="kapsayici">
       <p>&copy; 2024 YBS Finans. Tüm hakları saklıdır.</p>
     </div>
   </footer>
+
+  <script>
+    // Navigasyon çubuğu kaydırma efekti
+    window.addEventListener("scroll", function () {
+      // Navigasyon çubuğunu seçiyoruz
+      const navigasyonCubugu = document.querySelector(".navigasyon-cubugu");
+      // Sayfa kaydırma miktarına göre sınıf ekleme veya kaldırma
+      if (window.scrollY > 50) {
+        navigasyonCubugu.classList.add("kaydirildi");
+      } else {
+        navigasyonCubugu.classList.remove("kaydirildi");
+      }
+    });
+
+    // İletişim formu gönderme işlemi
+    document.getElementById("iletisimFormu").addEventListener("submit", function(event) {
+      event.preventDefault(); // Formun varsayılan gönderimini engeller
+
+      // Formdan verileri alıyoruz
+      const adSoyad = this.elements[0].value;
+      const email = this.elements[1].value;
+      const telefon = this.elements[2].value;
+      const mesaj = this.elements[3].value;
+
+      // Basit bir doğrulama yapıyoruz
+      if (adSoyad && email && mesaj) {
+        alert("Mesajınız başarıyla gönderildi. Teşekkür ederiz!");
+        this.reset(); // Formu sıfırlar
+      } else {
+        alert("Lütfen gerekli tüm alanları doldurun.");
+      }
+    });
+  </script>
 </body>
 </html>

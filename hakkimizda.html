@@ -2,40 +2,46 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <!-- Sayfanın duyarlı tasarım için viewport ayarı -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hakkımızda - YBS Finans</title>
+  <!-- Font Awesome ikon kütüphanesini dahil ediyoruz -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+    /* CSS değişkenleri ile renkler ve temalar tanımlanıyor */
     :root {
-      --primary-color: #007BFF;
-      --secondary-color: #6c757d;
-      --accent-color: #28a745;
-      --text-color: #333;
-      --light-bg: #f8f9fa;
-      --dark-bg: #111;
+      --ana-renk: #007BFF; /* Birincil renk */
+      --ikincil-renk: #6c757d; /* İkincil renk */
+      --vurgulama-renk: #28a745; /* Vurgu rengi */
+      --yazi-renk: #333; /* Yazı rengi */
+      --acik-arka-plan: #f8f9fa; /* Açık arka plan rengi */
+      --koyu-arka-plan: #111; /* Koyu arka plan rengi */
     }
 
+    /* Tüm elemanlar için genel sıfırlama */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Sayfa genelinde kullanılacak yazı tipi ve temel renk ayarları */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
-      color: var(--text-color);
+      color: var(--yazi-renk);
     }
 
-    .container {
+    /* İçeriğin merkezlenmesi ve maksimum genişlik ayarı */
+    .kapsayici {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* Navbar */
-    .navbar {
-      background: var(--dark-bg);
+    /* Navigasyon Çubuğu Stilleri */
+    .navigasyon-cubugu {
+      background: var(--koyu-arka-plan);
       padding: 1rem 0;
       position: fixed;
       width: 100%;
@@ -44,17 +50,20 @@
       transition: all 0.3s ease;
     }
 
-    .navbar.scrolled {
+    /* Sayfa kaydırıldığında navigasyon çubuğunun arka planını değiştirir */
+    .navigasyon-cubugu.kaydirildi {
       background: rgba(17, 17, 17, 0.95);
       backdrop-filter: blur(10px);
     }
 
-    .navbar .container {
+    /* Navigasyon çubuğu içerisindeki kapsayıcı stili */
+    .navigasyon-cubugu .kapsayici {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    /* Logo stili */
     .logo {
       font-size: 1.8rem;
       font-weight: bold;
@@ -65,17 +74,20 @@
       gap: 0.5rem;
     }
 
+    /* Logodaki ikonun rengi */
     .logo i {
-      color: var(--primary-color);
+      color: var(--ana-renk);
     }
 
-    .nav-links {
+    /* Navigasyon bağlantıları stili */
+    .navigasyon-baglanti {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
 
-    .nav-links a {
+    /* Navigasyon bağlantılarının genel stili */
+    .navigasyon-baglanti a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
@@ -83,74 +95,82 @@
       position: relative;
     }
 
-    .nav-links a::after {
+    /* Navigasyon bağlantılarının altındaki çizgi efekti */
+    .navigasyon-baglanti a::after {
       content: '';
       position: absolute;
       width: 0;
       height: 2px;
       bottom: -4px;
       left: 0;
-      background-color: var(--primary-color);
+      background-color: var(--ana-renk);
       transition: width 0.3s;
     }
 
-    .nav-links a:hover::after,
-    .nav-links .active::after {
+    /* Hover veya aktif bağlantılar için alt çizgi genişlemesi */
+    .navigasyon-baglanti a:hover::after,
+    .navigasyon-baglanti .aktif::after {
       width: 100%;
     }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    /* Başlık Bölümü Stilleri */
+    .kahraman {
+      background: linear-gradient(135deg, var(--ana-renk), var(--vurgulama-renk));
       color: #fff;
       padding: 10rem 0 6rem;
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
+    /* Başlık bölümünün arka planına desen eklemek için */
+    .kahraman::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('path/to/pattern.svg') repeat;
+      background: url('yol/kalip.svg') repeat;
       opacity: 0.1;
     }
 
-    .hero-content {
+    /* Başlık içeriğinin merkezi hizalanması */
+    .kahraman-icerik {
       text-align: center;
       position: relative;
       z-index: 1;
     }
 
-    .hero h1 {
+    /* Başlık metni stili */
+    .kahraman h1 {
       font-size: 3.5rem;
       margin-bottom: 1.5rem;
       font-weight: 800;
     }
 
-    .hero p {
+    /* Başlık altındaki paragraf stili */
+    .kahraman p {
       font-size: 1.2rem;
       max-width: 800px;
       margin: 0 auto;
       opacity: 0.9;
     }
 
-    /* About Sections */
-    .about-section {
+    /* Hakkımızda Bölümü Stilleri */
+    .hakkimizda-bolumu {
       padding: 5rem 0;
     }
 
-    .about-grid {
+    /* Hakkımızda bölümü içindeki grid düzeni */
+    .hakkimizda-ag {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 3rem;
       margin-top: 3rem;
     }
 
-    .about-card {
+    /* Hakkımızda kartlarının genel stili */
+    .hakkimizda-karti {
       background: #fff;
       border-radius: 15px;
       padding: 2rem;
@@ -158,126 +178,146 @@
       transition: transform 0.3s ease;
     }
 
-    .about-card:hover {
+    /* Kartın üzerine gelindiğinde hafif yukarı kayma efekti */
+    .hakkimizda-karti:hover {
       transform: translateY(-10px);
     }
 
-    .about-card i {
+    /* Kart içindeki ikon stili */
+    .hakkimizda-karti i {
       font-size: 2.5rem;
-      color: var(--primary-color);
+      color: var(--ana-renk);
       margin-bottom: 1.5rem;
     }
 
-    .about-card h3 {
+    /* Kart başlık stili */
+    .hakkimizda-karti h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      color: var(--text-color);
+      color: var(--yazi-renk);
     }
 
-    .section-title {
+    /* Bölüm başlıklarının merkezi hizalanması */
+    .bolum-basligi {
       text-align: center;
       margin-bottom: 3rem;
     }
 
-    .section-title h2 {
+    /* Bölüm başlıklarının metin stili */
+    .bolum-basligi h2 {
       font-size: 2.5rem;
-      color: var(--text-color);
+      color: var(--yazi-renk);
       margin-bottom: 1rem;
     }
 
-    .section-title p {
-      color: var(--secondary-color);
+    /* Bölüm başlığı altındaki açıklama paragraf stili */
+    .bolum-basligi p {
+      color: var(--ikincil-renk);
       max-width: 600px;
       margin: 0 auto;
     }
 
-    /* Team Section */
-    .team {
-      background: var(--light-bg);
+    /* Ekip Bölümü Stilleri */
+    .ekip {
+      background: var(--acik-arka-plan);
       padding: 5rem 0;
     }
 
-    .team-grid {
+    /* Ekip bölümü içindeki grid düzeni */
+    .ekip-ag {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
     }
 
-    .team-member {
+    /* Ekip üyesi kartlarının genel stili */
+    .ekip-uyesi {
       background: #fff;
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
-    .member-image {
-  width: 100%;
-  height: auto;
-  max-width: 150px; /* Maksimum genişlik */
-  max-height: 150px; /* Maksimum yükseklik */
-  margin: 0 auto; /* Ortalamak için */
-  border-radius: 50%; /* Yuvarlak görünüm */
-  overflow: hidden;
-}
+    /* Ekip üyesi resminin stili */
+    .uyesi-resmi {
+      width: 100%;
+      height: auto;
+      max-width: 150px; /* Maksimum genişlik */
+      max-height: 150px; /* Maksimum yükseklik */
+      margin: 0 auto; /* Ortalamak için */
+      border-radius: 50%; /* Yuvarlak görünüm */
+      overflow: hidden;
+    }
 
-.member-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%; /* Yuvarlak görünüm */
-}
+    /* Resmin içeriğinin ayarlanması */
+    .uyesi-resmi img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%; /* Yuvarlak görünüm */
+      transition: transform 0.3s ease;
+    }
 
-    .team-member:hover .member-image img {
+    /* Ekip üyesi kartına gelindiğinde resmin hafif büyümesi */
+    .ekip-uyesi:hover .uyesi-resmi img {
       transform: scale(1.1);
     }
 
-    .member-info {
+    /* Ekip üyesi bilgisi bölümü */
+    .uyesi-bilgisi {
       padding: 1.5rem;
       text-align: center;
     }
 
-    .member-info h3 {
+    /* Ekip üyesi adı stili */
+    .uyesi-bilgisi h3 {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
     }
 
-    .member-info .position {
-      color: var(--primary-color);
+    /* Ekip üyesi pozisyon stili */
+    .pozisyon {
+      color: var(--ana-renk);
       font-weight: 500;
       margin-bottom: 1rem;
     }
 
-    .social-links {
+    /* Sosyal bağlantılar stili */
+    .sosyal-baglanti {
       display: flex;
       justify-content: center;
       gap: 1rem;
       margin-top: 1rem;
     }
 
-    .social-links a {
-      color: var(--secondary-color);
+    /* Sosyal bağlantı ikonlarının stili */
+    .sosyal-baglanti a {
+      color: var(--ikincil-renk);
       font-size: 1.2rem;
       transition: color 0.3s;
     }
 
-    .social-links a:hover {
-      color: var(--primary-color);
+    /* Sosyal bağlantılara gelindiğinde rengin değişmesi */
+    .sosyal-baglanti a:hover {
+      color: var(--ana-renk);
     }
 
-    /* Values Section */
-    .values {
+    /* Değerler Bölümü Stilleri */
+    .degerler {
       padding: 5rem 0;
     }
 
-    .values-grid {
+    /* Değerler bölümü içindeki grid düzeni */
+    .degerler-ag {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
     }
 
-    .value-card {
+    /* Değer kartlarının genel stili */
+    .deger-karti {
       text-align: center;
       padding: 2rem;
       border-radius: 15px;
@@ -286,86 +326,100 @@
       transition: transform 0.3s ease;
     }
 
-    .value-card:hover {
+    /* Değer kartına gelindiğinde hafif yukarı kayma efekti */
+    .deger-karti:hover {
       transform: translateY(-10px);
     }
 
-    .value-card i {
+    /* Değer kartındaki ikon stili */
+    .deger-karti i {
       font-size: 2.5rem;
-      color: var(--primary-color);
+      color: var(--ana-renk);
       margin-bottom: 1rem;
     }
 
-    .value-card h3 {
+    /* Değer kartı başlık stili */
+    .deger-karti h3 {
       font-size: 1.3rem;
       margin-bottom: 1rem;
     }
 
-    /* Footer */
-    .footer {
-      background: var(--dark-bg);
+    /* Altbilgi (Footer) Stilleri */
+    .altbilgi {
+      background: var(--koyu-arka-plan);
       color: #fff;
       padding: 4rem 0 2rem;
     }
 
-    .footer-grid {
+    /* Altbilgi içindeki grid düzeni */
+    .altbilgi-ag {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       margin-bottom: 3rem;
     }
 
-    .footer-info h3 {
+    /* Altbilgi bilgisi başlık stili */
+    .altbilgi-bilgisi h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
     }
 
-    .footer-links h3 {
+    /* Altbilgi bağlantı başlık stili */
+    .altbilgi-baglanti h3 {
       font-size: 1.2rem;
       margin-bottom: 1rem;
     }
 
-    .footer-links ul {
+    /* Altbilgi bağlantı listesinin sıfırlanması */
+    .altbilgi-baglanti ul {
       list-style: none;
     }
 
-    .footer-links li {
+    /* Altbilgi bağlantı öğeleri arasındaki boşluk */
+    .altbilgi-baglanti li {
       margin-bottom: 0.5rem;
     }
 
-    .footer-links a {
+    /* Altbilgi bağlantılarının stili */
+    .altbilgi-baglanti a {
       color: #fff;
       text-decoration: none;
       opacity: 0.8;
       transition: opacity 0.3s;
     }
 
-    .footer-links a:hover {
+    /* Altbilgi bağlantılarına gelindiğinde opaklığın artması */
+    .altbilgi-baglanti a:hover {
       opacity: 1;
     }
 
-    .footer-bottom {
+    /* Altbilginin alt kısmı için stil */
+    .altbilgi-alt {
       text-align: center;
       padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* Responsive Design */
+    /* Duyarlı Tasarım için medya sorguları */
     @media (max-width: 768px) {
-      .hero h1 {
+      /* Başlık bölümündeki başlık font boyutunu küçültür */
+      .kahraman h1 {
         font-size: 2.5rem;
       }
 
-      .nav-links {
+      /* Navigasyon bağlantılarını gizler */
+      .navigasyon-baglanti {
         display: none;
       }
 
-      .mobile-menu-btn {
+      /* Mobil menü butonunu gösterir */
+      .mobil-menu-butonu {
         display: block;
       }
     }
 
-    /* Animations */
+    /* Animasyon tanımları */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -377,56 +431,65 @@
       }
     }
 
-    .animate {
+    /* Animasyon sınıfı */
+    .animasyon {
       animation: fadeInUp 0.6s ease forwards;
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container">
+  <!-- Navigasyon Çubuğu -->
+  <nav class="navigasyon-cubugu">
+    <div class="kapsayici">
+      <!-- Logo ve ana sayfa bağlantısı -->
       <a href="index.html" class="logo">
         <i class="fas fa-dollar-sign"></i>
         YBS Finans
       </a>
-      <ul class="nav-links">
+      <!-- Navigasyon bağlantıları listesi -->
+      <ul class="navigasyon-baglanti">
         <li><a href="index.html">Ana Sayfa</a></li>
         <li><a href="hizmetler.html">Hizmetler</a></li>
         <li><a href="araclar.html">Finansal Araçlar</a></li>
-        <li><a href="hakkimizda.html" class="active">Hakkımızda</a></li>
+        <li><a href="hakkimizda.html" class="aktif">Hakkımızda</a></li>
         <li><a href="referanslar.html">Müşteri Yorumları</a></li>
         <li><a href="iletisim.html">İletişim</a></li>
       </ul>
     </div>
   </nav>
 
-  <header class="hero">
-    <div class="container">
-      <div class="hero-content">
+  <!-- Başlık Bölümü -->
+  <header class="kahraman">
+    <div class="kapsayici">
+      <div class="kahraman-icerik">
         <h1>Başarı Hikayemiz</h1>
         <p>Başkent Üniversitesi'nin genç ve dinamik ekibi olarak, finansal geleceğinizi şekillendirmek için buradayız.</p>
       </div>
     </div>
   </header>
 
-  <section class="about-section">
-    <div class="container">
-      <div class="section-title">
+  <!-- Hakkımızda Bölümü -->
+  <section class="hakkimizda-bolumu">
+    <div class="kapsayici">
+      <div class="bolum-basligi">
         <h2>Bizi Tanıyın</h2>
         <p>2024 yılında Başkent Üniversitesi öğrencileri tarafından kurulan YBS Finans, finansal teknolojileri herkes için erişilebilir kılma vizyonuyla yola çıktı.</p>
       </div>
-      <div class="about-grid">
-        <div class="about-card">
+      <div class="hakkimizda-ag">
+        <!-- Geçmişimiz Kartı -->
+        <div class="hakkimizda-karti">
           <i class="fas fa-history"></i>
           <h3>Geçmişimiz</h3>
           <p>Finans dünyasını demokratikleştirme hedefiyle çıktığımız bu yolda, teknoloji ve inovasyonu bir araya getirerek kullanıcı dostu çözümler sunuyoruz.</p>
         </div>
-        <div class="about-card">
+        <!-- Vizyonumuz Kartı -->
+        <div class="hakkimizda-karti">
           <i class="fas fa-eye"></i>
           <h3>Vizyonumuz</h3>
           <p>Global düzeyde güvenilir bir finansal teknoloji şirketi olarak, herkesin finansal özgürlüğüne katkıda bulunmak.</p>
         </div>
-        <div class="about-card">
+        <!-- Misyonumuz Kartı -->
+        <div class="hakkimizda-karti">
           <i class="fas fa-bullseye"></i>
           <h3>Misyonumuz</h3>
           <p>Yenilikçi finansal araçlarımızla bireylerin ve işletmelerin finansal hedeflerine ulaşmalarına yardımcı olmak.</p>
@@ -435,114 +498,127 @@
     </div>
   </section>
 
-  <section class="team">
-    <div class="container">
-      <div class="section-title">
+  <!-- Ekip Bölümü -->
+  <section class="ekip">
+    <div class="kapsayici">
+      <div class="bolum-basligi">
         <h2>Ekibimiz</h2>
         <p>Genç, dinamik ve yenilikçi ekibimizle sizlere en iyi hizmeti sunmak için çalışıyoruz.</p>
       </div>
-      <div class="team-grid">
-        <div class="team-member">
-          <div class="member-image">
+      <div class="ekip-ag">
+        <!-- Ekip Üyesi: Aylin -->
+        <div class="ekip-uyesi">
+          <div class="uyesi-resmi">
             <img src="img/aylin.jpeg" alt="Aylin">
           </div>
-          <div class="member-info">
-            <h3>Aylin </h3>
-            <p class="position">Kurucu Ortak - Yatırım Analisti</p>
+          <div class="uyesi-bilgisi">
+            <h3>Aylin</h3>
+            <p class="pozisyon">Kurucu Ortak - Yatırım Analisti</p>
             <p>Başkent Üniversitesi YBS öğrencisi olan Aylin, finansal analiz ve yatırım stratejileri konusunda uzmanlaşmıştır.</p>
-            <div class="social-links">
+            <div class="sosyal-baglanti">
               <a href="#"><i class="fab fa-linkedin"></i></a>
               <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
           </div>
         </div>
-        <div class="team-member">
-          <div class="member-image">
-            <img src="images/ahmet.jpg" alt="Ahmet Kaya">
+        <!-- Ekip Üyesi: Ahmet Kaya -->
+        <div class="ekip-uyesi">
+          <div class="uyesi-resmi">
+            <img src="img/kaan.jpg" alt="Ahmet Kaya">
           </div>
-          <div class="member-info">
-    <h3>Ahmet Kaya</h3>
-    <p class="position">Teknoloji Yöneticisi</p>
-    <p>Ahmet, finansal teknolojilere yönelik yenilikçi çözümler geliştirmede liderlik yapmaktadır.</p>
-    <div class="social-links">
-      <a href="#"><i class="fab fa-linkedin"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
+          <div class="uyesi-bilgisi">
+            <h3>Ahmet Kaya</h3>
+            <p class="pozisyon">Teknoloji Yöneticisi</p>
+            <p>Ahmet, finansal teknolojilere yönelik yenilikçi çözümler geliştirmede liderlik yapmaktadır.</p>
+            <div class="sosyal-baglanti">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-</div>
-</div>
-</section>
+  <!-- Değerler Bölümü -->
+  <section class="degerler">
+    <div class="kapsayici">
+      <div class="bolum-basligi">
+        <h2>Değerlerimiz</h2>
+        <p>YBS Finans olarak çalışma kültürümüzü ve sunduğumuz hizmetleri şekillendiren temel değerlerimiz.</p>
+      </div>
+      <div class="degerler-ag">
+        <!-- Müşteri Odaklılık Kartı -->
+        <div class="deger-karti">
+          <i class="fas fa-users"></i>
+          <h3>Müşteri Odaklılık</h3>
+          <p>Her zaman müşterilerimizin ihtiyaçlarına öncelik veriyoruz.</p>
+        </div>
+        <!-- Yenilikçilik Kartı -->
+        <div class="deger-karti">
+          <i class="fas fa-lightbulb"></i>
+          <h3>Yenilikçilik</h3>
+          <p>Finansal teknolojilere yönelik sürekli yenilikler geliştirme taahhüdümüz var.</p>
+        </div>
+        <!-- Güvenilirlik Kartı -->
+        <div class="deger-karti">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Güvenilirlik</h3>
+          <p>Kullanıcılarımızın güvenini korumak birinci önceliğimizdir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="values">
-<div class="container">
-<div class="section-title">
-<h2>Değerlerimiz</h2>
-<p>YBS Finans olarak çalışma kültürümüzü ve sunduğumuz hizmetleri şekillendiren temel değerlerimiz.</p>
-</div>
-<div class="values-grid">
-<div class="value-card">
-  <i class="fas fa-users"></i>
-  <h3>Müşteri Odaklılık</h3>
-  <p>Her zaman müşterilerimizin ihtiyaçlarına öncelik veriyoruz.</p>
-</div>
-<div class="value-card">
-  <i class="fas fa-lightbulb"></i>
-  <h3>Yenilikçilik</h3>
-  <p>Finansal teknolojilere yönelik sürekli yenilikler geliştirme taahhüdümüz var.</p>
-</div>
-<div class="value-card">
-  <i class="fas fa-shield-alt"></i>
-  <h3>Güvenilirlik</h3>
-  <p>Kullanıcılarımızın güvenini korumak birinci önceliğimizdir.</p>
-</div>
-</div>
-</div>
-</section>
+  <!-- Altbilgi (Footer) -->
+  <footer class="altbilgi">
+    <div class="kapsayici">
+      <div class="altbilgi-ag">
+        <!-- Altbilgi Bilgisi -->
+        <div class="altbilgi-bilgisi">
+          <h3>YBS Finans</h3>
+          <p>Finansal geleceğinizi şekillendirmek için buradayız. Yenilikçi çözümlerimizle yanınızdayız.</p>
+        </div>
+        <!-- Hızlı Erişim Linkleri -->
+        <div class="altbilgi-baglanti">
+          <h3>Hızlı Erişim</h3>
+          <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hizmetler.html">Hizmetler</a></li>
+            <li><a href="araclar.html">Finansal Araçlar</a></li>
+            <li><a href="referanslar.html">Müşteri Yorumları</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+          </ul>
+        </div>
+        <!-- İletişim Bilgileri -->
+        <div class="altbilgi-baglanti">
+          <h3>İletişim</h3>
+          <ul>
+            <li>Email: info@ybsfinans.com</li>
+            <li>Telefon: +90 (312) 123 4567</li>
+            <li>Adres: Başkent Üniversitesi, Ankara</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Altbilginin alt kısmındaki telif hakkı bilgisi -->
+      <div class="altbilgi-alt">
+        <p>&copy; 2024 YBS Finans. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
 
-<footer class="footer">
-<div class="container">
-<div class="footer-grid">
-<div class="footer-info">
-  <h3>YBS Finans</h3>
-  <p>Finansal geleceğinizi şekillendirmek için buradayız. Yenilikçi çözümlerimizle yanınızdayız.</p>
-</div>
-<div class="footer-links">
-  <h3>Hızlı Erişim</h3>
-  <ul>
-    <li><a href="index.html">Ana Sayfa</a></li>
-    <li><a href="hizmetler.html">Hizmetler</a></li>
-    <li><a href="araclar.html">Finansal Araçlar</a></li>
-    <li><a href="referanslar.html">Müşteri Yorumları</a></li>
-    <li><a href="iletisim.html">İletişim</a></li>
-  </ul>
-</div>
-<div class="footer-links">
-  <h3>İletişim</h3>
-  <ul>
-    <li>Email: info@ybsfinans.com</li>
-    <li>Telefon: +90 (312) 123 4567</li>
-    <li>Adres: Başkent Üniversitesi, Ankara</li>
-  </ul>
-</div>
-</div>
-<div class="footer-bottom">
-<p>&copy; 2024 YBS Finans. Tüm hakları saklıdır.</p>
-</div>
-</div>
-</footer>
-
-<script>
-// Navbar scroll effect
-window.addEventListener("scroll", function () {
-const navbar = document.querySelector(".navbar");
-if (window.scrollY > 50) {
-navbar.classList.add("scrolled");
-} else {
-navbar.classList.remove("scrolled");
-}
-});
-</script>
+  <script>
+    // Navigasyon çubuğu kaydırma efekti
+    window.addEventListener("scroll", function () {
+      // Navigasyon çubuğunu seçiyoruz
+      const navigasyonCubugu = document.querySelector(".navigasyon-cubugu");
+      // Sayfa kaydırma miktarına göre sınıf ekleme veya kaldırma
+      if (window.scrollY > 50) {
+        navigasyonCubugu.classList.add("kaydirildi");
+      } else {
+        navigasyonCubugu.classList.remove("kaydirildi");
+      }
+    });
+  </script>
 </body>
 </html>

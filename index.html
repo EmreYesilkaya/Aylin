@@ -2,79 +2,92 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <!-- Sayfanın duyarlı tasarım için viewport ayarı -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YBS Finans</title>
+  <!-- Font Awesome ikon kütüphanesini dahil ediyoruz -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+    /* CSS değişkenleri ile renkler ve temalar tanımlanıyor */
     :root {
-      --primary: #007BFF;
-      --secondary: #28a745;
-      --dark: #111;
-      --light: #f8f9fa;
-      --transition: all 0.3s ease;
+      --ana-renk: #007BFF; /* Birincil renk (mavi) */
+      --ikincil-renk: #28a745; /* İkincil renk (yeşil) */
+      --koyu-renk: #111; /* Koyu renk (genellikle arka plan) */
+      --acik-renk: #f8f9fa; /* Açık renk (genellikle arka plan) */
+      --gecis: all 0.3s ease; /* Geçiş efekti */
     }
 
+    /* Tüm elemanlar için genel sıfırlama */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Sayfa genelinde kullanılacak yazı tipi ve temel renk ayarları */
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       line-height: 1.6;
-      overflow-x: hidden;
+      color: var(--yazi-renk); /* Genel yazı rengi */
+      background-color: var(--acik-renk); /* Sayfanın arka plan rengi */
     }
 
+    /* İçeriğin merkezlenmesi ve maksimum genişlik ayarı */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* Navbar */
+    /* Navigasyon Çubuğu Stilleri */
     .navbar {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      position: fixed;
+      background: rgba(255, 255, 255, 0.95); /* Yarı saydam beyaz arka plan */
+      backdrop-filter: blur(10px); /* Arka plan bulanıklığı */
+      position: fixed; /* Sayfanın üst kısmında sabitlenir */
       width: 100%;
       top: 0;
-      z-index: 1000;
+      z-index: 1000; /* Diğer öğelerin üzerinde görünmesini sağlar */
       padding: 1rem 0;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); /* Hafif gölge efekti */
     }
 
+    /* Navigasyon çubuğu içerisindeki kapsayıcı stili */
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    /* Logo stili */
     .logo {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--ana-renk); /* Logo rengi */
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.5rem; /* İkon ve metin arasındaki boşluk */
     }
 
+    /* Navigasyon bağlantıları stili */
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
 
+    /* Navigasyon bağlantılarının genel stili */
     .nav-links a {
-      color: var(--dark);
+      color: var(--koyu-renk);
       text-decoration: none;
       font-weight: 500;
       font-size: 1.1rem;
       padding: 0.5rem 0;
       position: relative;
+      transition: var(--gecis);
     }
 
+    /* Navigasyon bağlantılarının altındaki çizgi efekti */
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -82,33 +95,37 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--primary);
-      transition: var(--transition);
+      background: var(--ana-renk);
+      transition: var(--gecis);
     }
 
-    .nav-links a:hover::after {
+    /* Hover durumunda alt çizgi genişler */
+    .nav-links a:hover::after,
+    .nav-links .aktif::after {
       width: 100%;
     }
 
-    /* Hero Section */
+    /* Başlık Bölümü Stilleri */
     .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      min-height: 100vh; /* Görüntü yüksekliği tam ekran */
+      background: linear-gradient(135deg, var(--ana-renk), var(--ikincil-renk)); /* Gradient arka plan */
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
     }
 
+    /* Başlık bölümünün arka planına desen eklemek için */
     .hero::before {
       content: '';
       position: absolute;
       width: 100%;
       height: 100%;
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.1;
+      opacity: 0.1; /* Desenin opaklığı */
     }
 
+    /* Hero içerik stili */
     .hero-content {
       color: white;
       max-width: 800px;
@@ -118,6 +135,7 @@
       position: relative;
     }
 
+    /* Başlık metni stili ve animasyonu */
     .hero-content h1 {
       font-size: 4rem;
       font-weight: 800;
@@ -125,72 +143,82 @@
       line-height: 1.2;
     }
 
+    /* Açıklama metni stili */
     .hero-content p {
       font-size: 1.4rem;
       margin-bottom: 2.5rem;
       opacity: 0.9;
     }
 
+    /* Butonlar bölümü stili */
     .hero-buttons {
       display: flex;
       gap: 1.5rem;
       justify-content: center;
     }
 
+    /* Genel buton stili */
     .btn {
       padding: 1rem 2.5rem;
       border-radius: 50px;
       font-weight: 600;
       text-decoration: none;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
+    /* Birincil buton stili */
     .btn-primary {
       background: white;
-      color: var(--primary);
+      color: var(--ana-renk);
     }
 
+    /* İkincil buton stili */
     .btn-secondary {
       background: transparent;
       border: 2px solid white;
       color: white;
     }
 
+    /* Buton hover efekti */
     .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
-    /* Features Section */
+    /* Özellikler Bölümü Stilleri */
     .features {
       padding: 8rem 0;
-      background: var(--light);
+      background: var(--acik-renk); /* Açık arka plan rengi */
     }
 
+    /* Bölüm başlığı stili */
     .section-title {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 4rem;
-      color: var(--dark);
+      color: var(--koyu-renk);
     }
 
+    /* Özellikler grid düzeni */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2.5rem;
     }
 
+    /* Her bir özellik kartının stili */
     .feature-card {
       background: white;
       padding: 3rem 2rem;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       text-align: center;
-      transition: var(--transition);
+      transition: var(--gecis);
       position: relative;
       overflow: hidden;
     }
 
+    /* Özellik kartının üst kısmındaki çizgi efekti */
     .feature-card::before {
       content: '';
       position: absolute;
@@ -198,11 +226,12 @@
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      transform: translateY(-100%);
-      transition: var(--transition);
+      background: linear-gradient(to right, var(--ana-renk), var(--ikincil-renk));
+      transform: translateY(-100%); /* Başlangıçta çizgi görünmez */
+      transition: var(--gecis);
     }
 
+    /* Hover durumunda kart yukarı kayar ve çizgi görünür hale gelir */
     .feature-card:hover {
       transform: translateY(-10px);
     }
@@ -211,30 +240,34 @@
       transform: translateY(0);
     }
 
+    /* Özellik kartındaki ikon stili */
     .feature-card i {
       font-size: 3rem;
-      color: var(--primary);
+      color: var(--ana-renk);
       margin-bottom: 1.5rem;
     }
 
+    /* Özellik kartındaki başlık stili */
     .feature-card h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      color: var(--dark);
+      color: var(--koyu-renk);
     }
 
+    /* Özellik kartındaki açıklama metni stili */
     .feature-card p {
       color: #666;
       font-size: 1.1rem;
     }
 
-    /* Footer */
+    /* Altbilgi (Footer) Stilleri */
     .footer {
-      background: var(--dark);
+      background: var(--koyu-renk);
       color: white;
       padding: 5rem 0 2rem;
     }
 
+    /* Altbilgi grid düzeni */
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -242,6 +275,7 @@
       margin-bottom: 3rem;
     }
 
+    /* Altbilgi kolon başlığı stili */
     .footer-col h3 {
       font-size: 1.4rem;
       margin-bottom: 1.5rem;
@@ -249,6 +283,7 @@
       padding-bottom: 1rem;
     }
 
+    /* Başlık altındaki çizgi efekti */
     .footer-col h3::after {
       content: '';
       position: absolute;
@@ -256,76 +291,91 @@
       left: 0;
       width: 50px;
       height: 2px;
-      background: var(--primary);
+      background: var(--ana-renk);
     }
 
+    /* Altbilgi kolonunda yer alan paragraf stili */
     .footer-col p {
       margin-bottom: 1rem;
       opacity: 0.8;
     }
 
+    /* Altbilgi bağlantıları listesi stili */
     .footer-links {
       list-style: none;
     }
 
+    /* Her bir bağlantı listesi öğesi stili */
     .footer-links li {
       margin-bottom: 1rem;
     }
 
+    /* Altbilgi bağlantılarının genel stili */
     .footer-links a {
       color: white;
       text-decoration: none;
       opacity: 0.8;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
+    /* Hover durumunda bağlantı stili */
     .footer-links a:hover {
       opacity: 1;
-      color: var(--primary);
+      color: var(--ana-renk);
     }
 
+    /* Altbilgi alt kısmı stili */
     .footer-bottom {
       text-align: center;
       padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    /* Sosyal Medya Bağlantıları Stili */
     .social-links {
       display: flex;
       gap: 1.5rem;
       margin-top: 2rem;
     }
 
+    /* Sosyal medya ikonlarının stili */
     .social-links a {
       color: white;
       font-size: 1.5rem;
       opacity: 0.8;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
+    /* Hover durumunda ikon stili */
     .social-links a:hover {
       opacity: 1;
-      color: var(--primary);
+      color: var(--ana-renk);
       transform: translateY(-3px);
     }
 
+    /* Duyarlı Tasarım için medya sorguları */
     @media (max-width: 768px) {
+      /* Navigasyon bağlantılarını gizler */
       .nav-links {
         display: none;
       }
 
+      /* Hero başlık font boyutunu küçültür */
       .hero-content h1 {
         font-size: 2.5rem;
       }
 
+      /* Hero açıklama font boyutunu küçültür */
       .hero-content p {
         font-size: 1.1rem;
       }
 
+      /* Butonların düzenini dikey yapar */
       .hero-buttons {
         flex-direction: column;
       }
 
+      /* Özellik kartlarının paddingini küçültür */
       .feature-card {
         padding: 2rem 1.5rem;
       }
@@ -333,12 +383,15 @@
   </style>
 </head>
 <body>
+  <!-- Navigasyon Çubuğu -->
   <nav class="navbar">
     <div class="container nav-container">
+      <!-- Logo ve ana sayfa bağlantısı -->
       <a href="index.html" class="logo">
         <i class="fas fa-chart-line"></i>
         YBS Finans
       </a>
+      <!-- Navigasyon bağlantıları -->
       <ul class="nav-links">
         <li><a href="index.html">Ana Sayfa</a></li>
         <li><a href="hizmetler.html">Hizmetler</a></li>
@@ -350,6 +403,7 @@
     </div>
   </nav>
 
+  <!-- Hero Bölümü -->
   <section class="hero">
     <div class="container hero-content">
       <h1>Finansal Geleceğinizi Şekillendirin</h1>
@@ -361,20 +415,24 @@
     </div>
   </section>
 
+  <!-- Özellikler Bölümü -->
   <section class="features">
     <div class="container">
       <h2 class="section-title">Neler Sunuyoruz?</h2>
       <div class="features-grid">
+        <!-- Özellik Kartı 1 -->
         <div class="feature-card">
           <i class="fas fa-chart-line"></i>
           <h3>Akıllı Finansal Analiz</h3>
           <p>Yapay zeka destekli analiz araçlarımızla veriye dayalı kararlar alın, riskleri minimize edin.</p>
         </div>
+        <!-- Özellik Kartı 2 -->
         <div class="feature-card">
           <i class="fas fa-wallet"></i>
           <h3>Yatırım Takibi</h3>
           <p>Gelişmiş portföy yönetimi araçlarıyla yatırımlarınızı anlık takip edin, fırsatları yakalayın.</p>
         </div>
+        <!-- Özellik Kartı 3 -->
         <div class="feature-card">
           <i class="fas fa-user-tie"></i>
           <h3>Uzman Danışmanlık</h3>
@@ -384,9 +442,11 @@
     </div>
   </section>
 
+  <!-- Altbilgi (Footer) -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
+        <!-- Footer Kolonu 1 -->
         <div class="footer-col">
           <h3>YBS Finans</h3>
           <p>Finansal geleceğinizi şekillendirmek için yanınızdayız. Modern çözümler, güvenilir hizmet.</p>
@@ -397,6 +457,7 @@
             <a href="#"><i class="fab fa-facebook"></i></a>
           </div>
         </div>
+        <!-- Footer Kolonu 2 -->
         <div class="footer-col">
           <h3>Hızlı Erişim</h3>
           <ul class="footer-links">
@@ -406,6 +467,7 @@
             <li><a href="referanslar.html">Müşteri Yorumları</a></li>
           </ul>
         </div>
+        <!-- Footer Kolonu 3 -->
         <div class="footer-col">
           <h3>İletişim</h3>
           <p><i class="fas fa-envelope"></i> info@ybsfinans.com</p>
@@ -418,5 +480,19 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Navigasyon çubuğu kaydırma efekti
+    window.addEventListener("scroll", function () {
+      // Navigasyon çubuğunu seçiyoruz
+      const navigasyonCubugu = document.querySelector(".navbar");
+      // Sayfa kaydırma miktarına göre sınıf ekleme veya kaldırma
+      if (window.scrollY > 50) {
+        navigasyonCubugu.classList.add("kaydirildi");
+      } else {
+        navigasyonCubugu.classList.remove("kaydirildi");
+      }
+    });
+  </script>
 </body>
 </html>

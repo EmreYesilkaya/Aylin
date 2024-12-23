@@ -2,38 +2,45 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <!-- Sayfanın duyarlı tasarım için viewport ayarı -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Müşteri Yorumları - YBS Finans</title>
+  <!-- Font Awesome ikon kütüphanesini dahil ediyoruz -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+    /* CSS değişkenleri ile renkler ve temalar tanımlanıyor */
     :root {
-      --primary-color: #007BFF;
-      --secondary-color: #28a745;
-      --dark: #111;
-      --light: #f8f9fa;
-      --transition: all 0.3s ease;
+      --ana-renk: #007BFF; /* Birincil renk */
+      --ikincil-renk: #28a745; /* İkincil renk */
+      --koyu-renk: #111; /* Koyu renk */
+      --acik-renk: #f8f9fa; /* Açık renk */
+      --gecis: all 0.3s ease; /* Geçiş efekti */
     }
 
+    /* Tüm elemanlar için genel sıfırlama */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Sayfa genelinde kullanılacak yazı tipi ve temel renk ayarları */
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       line-height: 1.6;
-      background: var(--light);
+      background: var(--acik-renk); /* Sayfanın arka plan rengi */
+      color: #333; /* Genel yazı rengi */
     }
 
-    .container {
+    /* İçeriğin merkezlenmesi ve maksimum genişlik ayarı */
+    .kapsayici {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* Navbar Styles */
-    .navbar {
+    /* Navigasyon Çubuğu Stilleri */
+    .navigasyon-cubugu {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       position: fixed;
@@ -42,64 +49,74 @@
       z-index: 1000;
       padding: 1rem 0;
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      transition: var(--gecis);
     }
 
-    .nav-container {
+    /* Navigasyon çubuğu içerisindeki kapsayıcı stili */
+    .navigasyon-cubugu .kapsayici {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    /* Logo stili */
     .logo {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--primary-color);
+      color: var(--ana-renk);
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .nav-links {
+    /* Navigasyon bağlantıları stili */
+    .navigasyon-baglanti {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
 
-    .nav-links a {
-      color: var(--dark);
+    /* Navigasyon bağlantılarının genel stili */
+    .navigasyon-baglanti a {
+      color: var(--koyu-renk);
       text-decoration: none;
       font-weight: 500;
       font-size: 1.1rem;
       padding: 0.5rem 0;
       position: relative;
+      transition: var(--gecis);
     }
 
-    .nav-links a::after {
+    /* Navigasyon bağlantılarının altındaki çizgi efekti */
+    .navigasyon-baglanti a::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--primary-color);
-      transition: var(--transition);
+      background: var(--ana-renk);
+      transition: var(--gecis);
     }
 
-    .nav-links a:hover::after {
+    /* Hover durumunda veya aktif olan bağlantı için alt çizgi genişlemesi */
+    .navigasyon-baglanti a:hover::after,
+    .navigasyon-baglanti .aktif::after {
       width: 100%;
     }
 
-    /* Hero Section */
+    /* Başlık Bölümü Stilleri */
     .hero {
       padding: 8rem 0 4rem;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, var(--ana-renk), var(--ikincil-renk));
       color: white;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
+    /* Başlık bölümünün arka planına desen eklemek için */
     .hero::before {
       content: '';
       position: absolute;
@@ -111,200 +128,256 @@
       opacity: 0.1;
     }
 
+    /* Başlık metni stili ve animasyonu */
     .hero h1 {
       font-size: 3.5rem;
       margin-bottom: 1rem;
       font-weight: 800;
+      animation: fadeInUp 0.8s ease;
     }
 
+    /* Başlık altındaki açıklama metni stili ve animasyonu */
     .hero p {
       font-size: 1.4rem;
       opacity: 0.9;
       max-width: 600px;
       margin: 0 auto;
+      animation: fadeInUp 1s ease;
     }
 
-    /* Testimonials Section */
-    .testimonials {
+    /* Yorumlar Bölümü Stilleri */
+    .yorumlar {
       padding: 5rem 0;
     }
 
-    .testimonials-grid {
+    /* Yorumlar bölümü içindeki grid düzeni */
+    .yorumlar-ag {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
     }
 
-    .testimonial-card {
+    /* Her bir yorum kartının genel stili */
+    .yorum-karti {
       background: white;
       border-radius: 20px;
       padding: 2rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      transition: var(--transition);
+      transition: var(--gecis);
       position: relative;
     }
 
-    .testimonial-card:hover {
+    /* Kart üzerine gelindiğinde hafif yukarı kayma ve gölge efekti */
+    .yorum-karti:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
     }
 
-    .testimonial-header {
+    /* Yorum kartının başlık kısmı stili */
+    .yorum-basligi {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       margin-bottom: 1.5rem;
     }
 
-    .testimonial-image {
+    /* Yorum kartındaki resmin stili */
+    .yorum-resmi {
       width: 80px;
       height: 80px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--primary-color);
+      border: 3px solid var(--ana-renk);
     }
 
-    .testimonial-info h3 {
+    /* Yorum bilgisi kısmının stili */
+    .yorum-bilgisi h3 {
       font-size: 1.4rem;
-      color: var(--dark);
+      color: var(--koyu-renk);
       margin-bottom: 0.3rem;
     }
 
-    .testimonial-info span {
+    /* Yorum bilgisi içindeki pozisyon veya unvan stili */
+    .yorum-bilgisi span {
       color: #666;
       font-size: 0.95rem;
     }
 
-    .testimonial-content {
+    /* Yorum içeriğinin stili */
+    .yorum-icerik {
       font-size: 1.1rem;
       color: #444;
       line-height: 1.8;
     }
 
-    .testimonial-quote {
+    /* Yorumda kullanılan alıntı işareti stili */
+    .yorum-alinti {
       position: absolute;
       top: 2rem;
       right: 2rem;
       font-size: 3rem;
-      color: var(--primary-color);
+      color: var(--ana-renk);
       opacity: 0.1;
     }
 
-    /* Footer */
-    .footer {
-      background: var(--dark);
+    /* Altbilgi (Footer) Stilleri */
+    .altbilgi {
+      background: var(--koyu-renk);
       color: white;
       padding: 3rem 0 2rem;
     }
 
-    .footer-content {
+    /* Altbilgi içeriğinin merkezi hizalanması */
+    .altbilgi-icerik {
       text-align: center;
     }
 
-    .social-links {
+    /* Sosyal medya bağlantıları stili */
+    .sosyal-baglanti {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
       margin: 2rem 0;
     }
 
-    .social-links a {
+    /* Sosyal medya ikonlarının stili */
+    .sosyal-baglanti a {
       color: white;
       font-size: 1.5rem;
-      transition: var(--transition);
+      transition: var(--gecis);
     }
 
-    .social-links a:hover {
-      color: var(--primary-color);
+    /* Sosyal medya ikonlarına gelindiğinde renk ve hareket efekti */
+    .sosyal-baglanti a:hover {
+      color: var(--ana-renk);
       transform: translateY(-3px);
     }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
+    /* Animasyon tanımları */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
+    /* Duyarlı Tasarım için medya sorguları */
+    @media (max-width: 768px) {
+      /* Başlık bölümündeki başlık font boyutunu küçültür */
       .hero h1 {
         font-size: 2.5rem;
       }
 
+      /* Başlık altındaki paragraf font boyutunu küçültür */
       .hero p {
         font-size: 1.1rem;
       }
 
-      .testimonial-card {
+      /* Navigasyon bağlantılarını gizler */
+      .navigasyon-baglanti {
+        display: none;
+      }
+
+      /* Mobil menü butonunu gösterir */
+      .mobil-menu-butonu {
+        display: block;
+      }
+
+      /* Yorum kartlarının paddingini küçültür */
+      .yorum-karti {
         padding: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container nav-container">
+  <!-- Navigasyon Çubuğu -->
+  <nav class="navigasyon-cubugu">
+    <div class="kapsayici navigasyon-kapsayici">
+      <!-- Logo ve ana sayfa bağlantısı -->
       <a href="index.html" class="logo">
         <i class="fas fa-chart-line"></i>
         YBS Finans
       </a>
-      <ul class="nav-links">
+      <!-- Navigasyon bağlantıları -->
+      <ul class="navigasyon-baglanti">
         <li><a href="index.html">Ana Sayfa</a></li>
         <li><a href="hizmetler.html">Hizmetler</a></li>
         <li><a href="araclar.html">Finansal Araçlar</a></li>
         <li><a href="hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="referanslar.html">Müşteri Yorumları</a></li>
+        <li><a href="referanslar.html" class="aktif">Müşteri Yorumları</a></li>
         <li><a href="iletisim.html">İletişim</a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- Başlık Bölümü -->
   <section class="hero">
-    <div class="container">
+    <div class="kapsayici">
       <h1>Müşterilerimizin Deneyimleri</h1>
       <p>Finansal başarı hikayelerini keşfedin</p>
     </div>
   </section>
 
-  <section class="testimonials">
-    <div class="container">
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right testimonial-quote"></i>
-          <div class="testimonial-header">
-            <img src="img/ege.jpeg" alt="TechCorp CEO" class="testimonial-image">
-            <div class="testimonial-info">
+  <!-- Müşteri Yorumları Bölümü -->
+  <section class="yorumlar">
+    <div class="kapsayici">
+      <div class="yorumlar-ag">
+        <!-- Yorum Kartı 1 -->
+        <div class="yorum-karti">
+          <!-- Alıntı işareti -->
+          <i class="fas fa-quote-right yorum-alinti"></i>
+          <!-- Yorum Başlığı ve Resmi -->
+          <div class="yorum-basligi">
+            <img src="img/ege.jpeg" alt="Ege Uluscul" class="yorum-resmi">
+            <div class="yorum-bilgisi">
               <h3>TechCorp</h3>
               <span>Ege Uluscul, CEO</span>
             </div>
           </div>
-          <p class="testimonial-content">
+          <!-- Yorum İçeriği -->
+          <p class="yorum-icerik">
             "YBS Finans'ın yapay zeka destekli analizleri ve uzman danışmanlığı sayesinde yatırım kararlarımızda %40 daha başarılı sonuçlar elde ettik. Dijital dönüşüm sürecimizde vazgeçilmez bir iş ortağı oldular."
           </p>
         </div>
 
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right testimonial-quote"></i>
-          <div class="testimonial-header">
-            <img src="img/gunes.jpeg" alt="GreenGarden Founder" class="testimonial-image">
-            <div class="testimonial-info">
+        <!-- Yorum Kartı 2 -->
+        <div class="yorum-karti">
+          <!-- Alıntı işareti -->
+          <i class="fas fa-quote-right yorum-alinti"></i>
+          <!-- Yorum Başlığı ve Resmi -->
+          <div class="yorum-basligi">
+            <img src="img/gunes.jpeg" alt="Güneş" class="yorum-resmi">
+            <div class="yorum-bilgisi">
               <h3>GreenGarden</h3>
-              <span>Gunes, Kurucu</span>
+              <span>Güneş, Kurucu</span>
             </div>
           </div>
-          <p class="testimonial-content">
+          <!-- Yorum İçeriği -->
+          <p class="yorum-icerik">
             "Sürdürülebilir büyüme stratejimizi YBS Finans'ın desteğiyle şekillendirdik. Risk analizi ve finansal planlama konusundaki uzmanlıkları ile 2 yılda %85 büyüme kaydettik."
           </p>
         </div>
 
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right testimonial-quote"></i>
-          <div class="testimonial-header">
-            <img src="img/gulin.jpeg" alt="BlueWave CFO" class="testimonial-image">
-            <div class="testimonial-info">
+        <!-- Yorum Kartı 3 -->
+        <div class="yorum-karti">
+          <!-- Alıntı işareti -->
+          <i class="fas fa-quote-right yorum-alinti"></i>
+          <!-- Yorum Başlığı ve Resmi -->
+          <div class="yorum-basligi">
+            <img src="img/gulin.jpeg" alt="Gülin" class="yorum-resmi">
+            <div class="yorum-bilgisi">
               <h3>BlueWave</h3>
               <span>Gülin, Mali İşler Direktörü</span>
             </div>
           </div>
-          <p class="testimonial-content">
+          <!-- Yorum İçeriği -->
+          <p class="yorum-icerik">
             "Fintech çözümleri ve kişiselleştirilmiş danışmanlık hizmetleriyle YBS Finans, finansal süreçlerimizi optimize etmemize yardımcı oldu. İş süreçlerimizde %30 verimlilik artışı sağladık."
           </p>
         </div>
@@ -312,16 +385,33 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container footer-content">
-      <div class="social-links">
+  <!-- Altbilgi (Footer) -->
+  <footer class="altbilgi">
+    <div class="kapsayici altbilgi-icerik">
+      <!-- Sosyal Medya Bağlantıları -->
+      <div class="sosyal-baglanti">
         <a href="#"><i class="fab fa-linkedin"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-facebook"></i></a>
       </div>
+      <!-- Telif Hakkı Bilgisi -->
       <p>&copy; 2024 YBS Finans. Tüm hakları saklıdır.</p>
     </div>
   </footer>
+
+  <script>
+    // Navigasyon çubuğu kaydırma efekti
+    window.addEventListener("scroll", function () {
+      // Navigasyon çubuğunu seçiyoruz
+      const navigasyonCubugu = document.querySelector(".navigasyon-cubugu");
+      // Sayfa kaydırma miktarına göre sınıf ekleme veya kaldırma
+      if (window.scrollY > 50) {
+        navigasyonCubugu.classList.add("kaydirildi");
+      } else {
+        navigasyonCubugu.classList.remove("kaydirildi");
+      }
+    });
+  </script>
 </body>
 </html>
