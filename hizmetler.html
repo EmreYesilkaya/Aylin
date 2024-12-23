@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hizmetlerimiz - YBS Finans</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #007BFF;
+      --primary-dark: #0056b3;
+      --secondary: #28a745;
+      --dark: #111;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      background: var(--light);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--dark);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links .active::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .services-hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 8rem 0 4rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-hero::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') repeat;
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* Services Section */
+    .services-section {
+      padding: 4rem 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .service-image {
+      height: 200px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-image i {
+      font-size: 4rem;
+      color: #fff;
+    }
+
+    .service-content {
+      padding: 2rem;
+    }
+
+    .service-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .service-content p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      min-height: 80px;
+    }
+
+    .service-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--gray);
+    }
+
+    .service-features i {
+      color: var(--primary);
+    }
+
+    .service-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      text-align: center;
+      width: 100%;
+    }
+
+    .service-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Additional Services */
+    .additional-services {
+      padding: 4rem 0;
+      background: #fff;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 15px;
+      background: var(--light);
+      transition: transform 0.3s;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-item i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .feature-item p {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: #fff;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    @media (max-width: 992px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-dollar-sign"></i>
+        YBS Finans
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="hizmetler.html" class="active">Hizmetler</a></li>
+        <li><a href="araclar.html">Finansal Araçlar</a></li>
+        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="services-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Profesyonel Finansal Hizmetler</h1>
+        <p>Finansal hedeflerinize ulaşmanız için ihtiyacınız olan tüm çözümler tek çatı altında.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="container">
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-image">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="service-content">
+            <h3>Yatırım Danışmanlığı</h3>
+            <p>Profesyonel ekibimizle birlikte yatırım stratejilerinizi oluşturun ve hedeflerinize ulaşın.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Portföy Analizi</li>
+              <li><i class="fas fa-check"></i> Risk Değerlendirmesi</li>
+              <li><i class="fas fa-check"></i> Piyasa Araştırmaları</li>
+            </ul>
+            <a href="iletisim.html" class="service-btn">Detaylı Bilgi</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-image">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="service-content">
+            <h3>Risk Yönetimi</h3>
+            <p>Kapsamlı risk analizi ve yönetimi ile finansal güvenliğinizi sağlayın.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Risk Profili Belirleme</li>
+              <li><i class="fas fa-check"></i> Senaryo Analizleri</li>
+              <li><i class="fas fa-check"></i> Koruma Stratejileri</li>
+            </ul>
+            <a href="iletisim.html" class="service-btn">Detaylı Bilgi</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-image">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <div class="service-content">
+            <h3>Varlık Yönetimi</h3>
+            <p>Varlıklarınızı profesyonel yaklaşımla yöneterek değerinizi koruyun ve artırın.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check"></i> Portföy Optimizasyonu</li>
+              <li><i class="fas fa-check"></i> Vergi Planlaması</li>
+              <li><i class="fas fa-check"></i> Miras Planlaması</li>
+            </ul>
+            <a href="iletisim.html" class="service-btn">Detaylı Bilgi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="additional-services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Ek Hizmetlerimiz</h2>
+        <p>Finansal başarınız için sunduğumuz diğer özel hizmetlerimiz</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-university"></i>
+          <h4>Kurumsal Finans</h4>
+          <p>Şirketiniz için özel finansal çözümler</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-hand-holding-usd"></i>
+          <h4>Emeklilik Planlaması</h4>
+          <p>Geleceğiniz için güvenli yatırım</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-chart-pie"></i>
+          <h4>Portföy Analizi</h4>
+          <p>Detaylı portföy değerlendirmesi</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-comments-dollar"></i>
+          <h4>Finansal Danışmanlık</h4>
+          <p>Kişisel finans tavsiyeleri</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 YBS Finans. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+</body>
+</html>

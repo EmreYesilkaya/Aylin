@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finansal Araçlar - YBS Finans</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --secondary-color: #28a745;
+      --dark-color: #111;
+      --light-color: #f8f9fa;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fa;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .navbar {
+      background-color: var(--dark-color);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .tools-hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      padding: 4rem 0;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    .tools-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .tools-hero p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeInUp 1s ease;
+    }
+
+    .tools-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+
+    .tool-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      padding: 2rem;
+      transition: var(--transition);
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .tool-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .tool-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+    }
+
+    .tool-icon i {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+
+    .tool-title {
+      font-size: 1.5rem;
+      margin: 0;
+      color: var(--dark-color);
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #eee;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .input-field:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary-color);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--light-color);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .tools-hero {
+        padding: 3rem 0;
+      }
+
+      .tools-hero h1 {
+        font-size: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">YBS Finans</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <li><a href="hizmetler.html">Hizmetler</a></li>
+          <li><a href="araclar.html" class="active">Finansal Araçlar</a></li>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="tools-hero">
+    <div class="container">
+      <h1>Finansal Araçlar</h1>
+      <p>Finansal hesaplamalarınızı kolayca yapın, geleceğinizi planlayın.</p>
+    </div>
+  </section>
+
+  <main class="container tools-container">
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-icon">
+          <i class="fas fa-exchange-alt"></i>
+        </div>
+        <h2 class="tool-title">Döviz Çevirici</h2>
+      </div>
+      <div class="input-group">
+        <label>Miktar</label>
+        <input type="number" id="amount" class="input-field" placeholder="Miktar giriniz">
+      </div>
+      <div class="input-group">
+        <label>Kaynak Para Birimi</label>
+        <select id="from-currency" class="input-field">
+          <option value="USD">USD - Amerikan Doları</option>
+          <option value="EUR">EUR - Euro</option>
+          <option value="TRY">TRY - Türk Lirası</option>
+          <option value="GBP">GBP - İngiliz Sterlini</option>
+          <option value="JPY">JPY - Japon Yeni</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Hedef Para Birimi</label>
+        <select id="to-currency" class="input-field">
+          <option value="TRY">TRY - Türk Lirası</option>
+          <option value="USD">USD - Amerikan Doları</option>
+          <option value="EUR">EUR - Euro</option>
+          <option value="GBP">GBP - İngiliz Sterlini</option>
+          <option value="JPY">JPY - Japon Yeni</option>
+        </select>
+      </div>
+      <button onclick="convertCurrency()" class="btn">Hesapla</button>
+      <div id="result" class="result"></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-icon">
+          <i class="fas fa-calculator"></i>
+        </div>
+        <h2 class="tool-title">Kredi Hesaplama</h2>
+      </div>
+      <div class="input-group">
+        <label>Kredi Tutarı (TL)</label>
+        <input type="number" id="loan-amount" class="input-field" placeholder="Kredi tutarını giriniz">
+      </div>
+      <div class="input-group">
+        <label>Yıllık Faiz Oranı (%)</label>
+        <input type="number" id="interest-rate" class="input-field" placeholder="Faiz oranını giriniz">
+      </div>
+      <div class="input-group">
+        <label>Vade (Ay)</label>
+        <input type="number" id="loan-term" class="input-field" placeholder="Vade süresini giriniz">
+      </div>
+      <button onclick="calculateLoan()" class="btn">Hesapla</button>
+      <div id="loan-result" class="result"></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h2 class="tool-title">Yatırım Getiri Hesaplama</h2>
+      </div>
+      <div class="input-group">
+        <label>Başlangıç Tutarı (TL)</label>
+        <input type="number" id="investment-amount" class="input-field" placeholder="Başlangıç tutarını giriniz">
+      </div>
+      <div class="input-group">
+        <label>Yıllık Beklenen Getiri (%)</label>
+        <input type="number" id="return-rate" class="input-field" placeholder="Beklenen getiri oranını giriniz">
+      </div>
+      <div class="input-group">
+        <label>Yatırım Süresi (Yıl)</label>
+        <input type="number" id="investment-period" class="input-field" placeholder="Yatırım süresini giriniz">
+      </div>
+      <button onclick="calculateInvestment()" class="btn">Hesapla</button>
+      <div id="investment-result" class="result"></div>
+    </div>
+  </main>
+
+  <script>
+    const exchangeRates = {
+      USD: { TRY: 31.5, EUR: 0.92, GBP: 0.79, JPY: 150.50 },
+      EUR: { TRY: 34.2, USD: 1.09, GBP: 0.86, JPY: 163.85 },
+      TRY: { USD: 0.032, EUR: 0.029, GBP: 0.025, JPY: 4.79 },
+      GBP: { USD: 1.27, EUR: 1.16, TRY: 39.8, JPY: 190.52 },
+      JPY: { USD: 0.0066, EUR: 0.0061, GBP: 0.0052, TRY: 0.21 }
+    };
+
+    function convertCurrency() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const fromCurrency = document.getElementById("from-currency").value;
+      const toCurrency = document.getElementById("to-currency").value;
+
+      if (isNaN(amount)) {
+        document.getElementById("result").innerHTML = "Lütfen geçerli bir miktar giriniz";
+        return;
+      }
+
+      if (fromCurrency === toCurrency) {
+        document.getElementById("result").innerHTML = `${amount.toFixed(2)} ${fromCurrency}`;
+        return;
+      }
+
+      const rate = exchangeRates[fromCurrency][toCurrency];
+      const result = amount * rate;
+      document.getElementById("result").innerHTML = `${amount.toFixed(2)} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
+    }
+
+    function calculateLoan() {
+      const loanAmount = parseFloat(document.getElementById("loan-amount").value);
+      const yearlyInterestRate = parseFloat(document.getElementById("interest-rate").value);
+      const loanTerm = parseInt(document.getElementById("loan-term").value);
+
+      if (isNaN(loanAmount) || isNaN(yearlyInterestRate) || isNaN(loanTerm)) {
+        document.getElementById("loan-result").innerHTML = "Lütfen tüm alanları doldurun";
+        return;
+      }
+
+      const monthlyInterestRate = yearlyInterestRate / 12 / 100;
+      const monthlyPayment = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTerm)) / 
+                            (Math.pow(1 + monthlyInterestRate, loanTerm) - 1);
+      const totalPayment = monthlyPayment * loanTerm;
+      const totalInterest = totalPayment - loanAmount;
+
+      document.getElementById("loan-result").innerHTML = `
+        Aylık Ödeme: ${monthlyPayment.toFixed(2)} TL<br>
+        Toplam Ödeme: ${totalPayment.toFixed(2)} TL<br>
+        Toplam Faiz: ${totalInterest.toFixed(2)} TL
+      `;
+    }
+
+    function calculateInvestment() {
+      const initialAmount = parseFloat(document.getElementById("investment-amount").value);
+      const yearlyReturnRate = parseFloat(document.getElementById("return-rate").value);
+      const investmentPeriod = parseInt(document.getElementById("investment-period").value);
+
+if (isNaN(initialAmount) || isNaN(yearlyReturnRate) || isNaN(investmentPeriod)) {
+  document.getElementById("investment-result").innerHTML = "Lütfen tüm alanları doldurun";
+  return;
+}
+
+const finalAmount = initialAmount * Math.pow(1 + yearlyReturnRate / 100, investmentPeriod);
+const totalGain = finalAmount - initialAmount;
+
+document.getElementById("investment-result").innerHTML = `
+  Toplam Tutar: ${finalAmount.toFixed(2)} TL<br>
+  Toplam Kazanç: ${totalGain.toFixed(2)} TL
+`;
+}
+</script>
+</body>
+</html>
